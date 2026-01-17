@@ -1,0 +1,2 @@
+fastapi[standard] == 0.128.0
+scikit-learn == 1.8.0
