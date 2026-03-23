@@ -1,0 +1,104 @@
+# Spain15 — 15 Spanish autonomous community capitals as a VRP medication delivery scenario.
+# Coordinates are real lat/lon (decimal degrees). Island communities excluded.
+# Depot: Madrid — home of the Centro Nacional de Epidemiología (CNE / Instituto de Salud Carlos III),
+#         Spain's national epidemiological surveillance hub and natural equivalent of the US CDC.
+# Max round trip from depot: ~17.80 degrees (Madrid ↔ Santiago de Compostela or Sevilla)
+# Fleet: 4 vehicles, capacity 100, max_range 26.70 (~1.5x max round trip)
+
+[depot]
+location = [40.4168, -3.7038]
+
+[vehicles]
+count = 4
+capacity = 100.0
+max_range = 26.70
+
+[[deliveries]]
+location = [43.3614, -5.8593]
+# Oviedo, Asturias
+priority = "regular"
+demand = 14.2
+
+[[deliveries]]
+location = [43.4623, -3.8099]
+# Santander, Cantabria
+priority = "regular"
+demand = 9.8
+
+[[deliveries]]
+location = [43.2630, -2.9350]
+# Vitoria-Gasteiz, Basque Country
+priority = "critical"
+demand = 18.5
+
+[[deliveries]]
+location = [42.8188, -1.6440]
+# Pamplona, Navarre
+priority = "regular"
+demand = 11.3
+
+[[deliveries]]
+location = [42.4650, -2.4489]
+# Logroño, La Rioja
+priority = "regular"
+demand = 7.6
+
+[[deliveries]]
+location = [41.6488, -0.8891]
+# Zaragoza, Aragon
+priority = "regular"
+demand = 20.4
+
+[[deliveries]]
+location = [41.3851, 2.1734]
+# Barcelona, Catalonia
+priority = "critical"
+demand = 24.1
+
+[[deliveries]]
+location = [39.4699, -0.3763]
+# Valencia, Valencian Community
+priority = "regular"
+demand = 17.9
+
+[[deliveries]]
+location = [41.9794, -4.7237]
+# Valladolid, Castile and León
+priority = "regular"
+demand = 13.0
+
+[[deliveries]]
+location = [39.8628, -4.0273]
+# Toledo, Castile-La Mancha
+priority = "regular"
+demand = 8.4
+
+[[deliveries]]
+location = [38.9232, -6.3434]
+# Mérida, Extremadura
+priority = "critical"
+demand = 16.7
+
+[[deliveries]]
+location = [37.9922, -1.1307]
+# Murcia, Region of Murcia
+priority = "regular"
+demand = 12.5
+
+[[deliveries]]
+location = [37.3891, -5.9845]
+# Seville, Andalusia
+priority = "critical"
+demand = 22.3
+
+[[deliveries]]
+location = [37.1773, -3.5986]
+# Granada (alt. Andalusia capital for geographic spread)
+priority = "regular"
+demand = 9.1
+
+[[deliveries]]
+location = [42.8782, -8.5448]
+# Santiago de Compostela, Galicia
+priority = "regular"
+demand = 19.6

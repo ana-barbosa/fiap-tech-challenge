@@ -1,0 +1,68 @@
+# Estonia9 — 9 Estonian county capitals as a VRP medication delivery scenario.
+# Coordinates are real lat/lon (decimal degrees). Island counties excluded.
+# Depot: Tallinn — headquarters of the Terviseamet (Health Board),
+#         Estonia's national public health agency and natural equivalent of the US CDC.
+# Max round trip from depot: ~5.80 degrees (Tallinn ↔ Võru)
+# Fleet: 2 vehicles, capacity 100, max_range 8.70 (~1.5x max round trip)
+
+[depot]
+location = [59.4370, 24.7536]
+
+[vehicles]
+count = 2
+capacity = 100.0
+max_range = 8.70
+
+[[deliveries]]
+location = [59.3797, 26.3569]
+# Rakvere, Lääne-Viru County
+priority = "regular"
+demand = 11.4
+
+[[deliveries]]
+location = [59.4678, 27.8219]
+# Jõhvi, Ida-Viru County
+priority = "critical"
+demand = 19.2
+
+[[deliveries]]
+location = [58.3795, 26.7191]
+# Tartu, Tartu County
+priority = "critical"
+demand = 22.7
+
+[[deliveries]]
+location = [58.6630, 25.9479]
+# Jõgeva, Jõgeva County
+priority = "regular"
+demand = 8.3
+
+[[deliveries]]
+location = [58.3638, 25.5975]
+# Viljandi, Viljandi County
+priority = "regular"
+demand = 13.9
+
+[[deliveries]]
+location = [57.8489, 27.0170]
+# Võru, Võru County
+priority = "regular"
+demand = 9.6
+
+[[deliveries]]
+location = [58.2528, 22.4867]
+# Haapsalu, Lääne County
+priority = "regular"
+demand = 7.8
+
+[[deliveries]]
+location = [58.3858, 24.5004]
+# Pärnu, Pärnu County
+priority = "regular"
+demand = 17.5
+
+[[deliveries]]
+location = [58.8647, 25.5699]
+# Paide, Järva County
+priority = "regular"
+demand = 10.6

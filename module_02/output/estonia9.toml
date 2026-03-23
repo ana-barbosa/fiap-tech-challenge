@@ -1,0 +1,110 @@
+best_fitness = 16.002517914540533
+stopping_reason = "Converged after 1059 generations without improvement"
+total_vehicles_available = 2
+total_vehicles_used = 2
+total_demand_served = 121.0
+
+[depot]
+location = [
+    59.437,
+    24.7536,
+]
+
+[vehicles]
+capacity = 100.0
+max_range = 8.7
+
+[[routes]]
+vehicle_index = 0
+total_demand = 25.3
+total_distance_km = 627.92
+critical_stops = 0
+regular_stops = 2
+
+[[routes.nodes]]
+location = [
+    58.3858,
+    24.5004,
+]
+priority = "regular"
+demand = 17.5
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    58.2528,
+    22.4867,
+]
+priority = "regular"
+demand = 7.8
+stop_number = 2
+
+[[routes]]
+vehicle_index = 1
+total_demand = 95.7
+total_distance_km = 917.91
+critical_stops = 2
+regular_stops = 5
+
+[[routes.nodes]]
+location = [
+    59.3797,
+    26.3569,
+]
+priority = "regular"
+demand = 11.4
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    59.4678,
+    27.8219,
+]
+priority = "critical"
+demand = 19.2
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    57.8489,
+    27.017,
+]
+priority = "regular"
+demand = 9.6
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    58.3795,
+    26.7191,
+]
+priority = "critical"
+demand = 22.7
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    58.663,
+    25.9479,
+]
+priority = "regular"
+demand = 8.3
+stop_number = 5
+
+[[routes.nodes]]
+location = [
+    58.3638,
+    25.5975,
+]
+priority = "regular"
+demand = 13.9
+stop_number = 6
+
+[[routes.nodes]]
+location = [
+    58.8647,
+    25.5699,
+]
+priority = "regular"
+demand = 10.6
+stop_number = 7
