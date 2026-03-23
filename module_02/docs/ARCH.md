@@ -138,6 +138,7 @@ examples/problem.toml
 
 ```bash
 make setup
+source .venv/bin/activate
 ```
 
 This creates a virtual environment, installs dependencies, and copies `.env.example` → `.env`.

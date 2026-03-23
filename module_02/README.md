@@ -19,6 +19,7 @@ Run this once before anything else:
 
 ```bash
 make setup
+source .venv/bin/activate
 ```
 
 This will create a virtual environment and install all dependencies. It will also create a `.env` file where you need to paste your OpenAI API key:
