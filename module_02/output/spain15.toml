@@ -1,0 +1,171 @@
+best_fitness = 52.042612594444726
+stopping_reason = "Converged after 1359 generations without improvement"
+total_vehicles_available = 4
+total_vehicles_used = 3
+total_demand_served = 225.4
+
+[depot]
+location = [
+    40.4168,
+    -3.7038,
+]
+
+[vehicles]
+capacity = 100.0
+max_range = 26.7
+
+[[routes]]
+vehicle_index = 0
+total_demand = 84.0
+total_distance_km = 1868.63
+critical_stops = 1
+regular_stops = 4
+
+[[routes.nodes]]
+location = [
+    41.6488,
+    -0.8891,
+]
+priority = "regular"
+demand = 20.4
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    41.3851,
+    2.1734,
+]
+priority = "critical"
+demand = 24.1
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    39.4699,
+    -0.3763,
+]
+priority = "regular"
+demand = 17.9
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    37.9922,
+    -1.1307,
+]
+priority = "regular"
+demand = 12.5
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    37.1773,
+    -3.5986,
+]
+priority = "regular"
+demand = 9.1
+stop_number = 5
+
+[[routes]]
+vehicle_index = 1
+total_demand = 94.2
+total_distance_km = 1918.04
+critical_stops = 2
+regular_stops = 4
+
+[[routes.nodes]]
+location = [
+    37.3891,
+    -5.9845,
+]
+priority = "critical"
+demand = 22.3
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    38.9232,
+    -6.3434,
+]
+priority = "critical"
+demand = 16.7
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    42.8782,
+    -8.5448,
+]
+priority = "regular"
+demand = 19.6
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    43.3614,
+    -5.8593,
+]
+priority = "regular"
+demand = 14.2
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    41.9794,
+    -4.7237,
+]
+priority = "regular"
+demand = 13.0
+stop_number = 5
+
+[[routes.nodes]]
+location = [
+    39.8628,
+    -4.0273,
+]
+priority = "regular"
+demand = 8.4
+stop_number = 6
+
+[[routes]]
+vehicle_index = 2
+total_demand = 47.2
+total_distance_km = 953.63
+critical_stops = 1
+regular_stops = 3
+
+[[routes.nodes]]
+location = [
+    43.4623,
+    -3.8099,
+]
+priority = "regular"
+demand = 9.8
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    43.263,
+    -2.935,
+]
+priority = "critical"
+demand = 18.5
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    42.8188,
+    -1.644,
+]
+priority = "regular"
+demand = 11.3
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    42.465,
+    -2.4489,
+]
+priority = "regular"
+demand = 7.6
+stop_number = 4

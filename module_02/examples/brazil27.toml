@@ -1,0 +1,169 @@
+# Brazil27 — 27 Brazilian state capitals as a VRP medication delivery scenario.
+# Coordinates are real lat/lon (decimal degrees).
+# Depot: Brasília, DF (geographically central)
+# Max round trip from depot: ~45.10 degrees
+# Fleet: 6 vehicles, capacity 100, max_range 67.65
+
+[depot]
+location = [-15.7801, -47.9292]
+
+[vehicles]
+count = 6
+capacity = 100.0
+max_range = 67.65
+
+[[deliveries]]
+location = [-9.9754, -67.8249]
+# Rio Branco, AC
+priority = "critical"
+demand = 17.8
+
+[[deliveries]]
+location = [-9.666, -35.735]
+# Maceió, AL
+priority = "critical"
+demand = 10.5
+
+[[deliveries]]
+location = [0.034, -51.0694]
+# Macapá, AP
+priority = "regular"
+demand = 19.7
+
+[[deliveries]]
+location = [-3.119, -60.0217]
+# Manaus, AM
+priority = "critical"
+demand = 22.8
+
+[[deliveries]]
+location = [-12.9714, -38.5014]
+# Salvador, BA
+priority = "critical"
+demand = 13.4
+
+[[deliveries]]
+location = [-3.7172, -38.5433]
+# Fortaleza, CE
+priority = "regular"
+demand = 9.4
+
+[[deliveries]]
+location = [-20.3155, -40.3128]
+# Vitória, ES
+priority = "critical"
+demand = 5.5
+
+[[deliveries]]
+location = [-16.6864, -49.2643]
+# Goiânia, GO
+priority = "regular"
+demand = 18.0
+
+[[deliveries]]
+location = [-2.5297, -44.3028]
+# São Luís, MA
+priority = "regular"
+demand = 9.4
+
+[[deliveries]]
+location = [-15.601, -56.0974]
+# Cuiabá, MT
+priority = "critical"
+demand = 21.2
+
+[[deliveries]]
+location = [-20.4697, -54.6201]
+# Campo Grande, MS
+priority = "regular"
+demand = 21.1
+
+[[deliveries]]
+location = [-19.9167, -43.9345]
+# Belo Horizonte, MG
+priority = "critical"
+demand = 11.8
+
+[[deliveries]]
+location = [-1.4558, -48.5044]
+# Belém, PA
+priority = "regular"
+demand = 24.1
+
+[[deliveries]]
+location = [-7.1195, -34.845]
+# João Pessoa, PB
+priority = "critical"
+demand = 6.9
+
+[[deliveries]]
+location = [-25.4284, -49.2733]
+# Curitiba, PR
+priority = "regular"
+demand = 21.9
+
+[[deliveries]]
+location = [-8.0578, -34.8829]
+# Recife, PE
+priority = "regular"
+demand = 21.1
+
+[[deliveries]]
+location = [-5.0892, -42.8019]
+# Teresina, PI
+priority = "regular"
+demand = 15.7
+
+[[deliveries]]
+location = [-22.9068, -43.1729]
+# Rio de Janeiro, RJ
+priority = "regular"
+demand = 12.6
+
+[[deliveries]]
+location = [-5.7945, -35.211]
+# Natal, RN
+priority = "regular"
+demand = 21.6
+
+[[deliveries]]
+location = [-30.0346, -51.2177]
+# Porto Alegre, RS
+priority = "regular"
+demand = 22.2
+
+[[deliveries]]
+location = [-8.7612, -63.9004]
+# Porto Velho, RO
+priority = "critical"
+demand = 19.1
+
+[[deliveries]]
+location = [2.8235, -60.6758]
+# Boa Vista, RR
+priority = "critical"
+demand = 9.6
+
+[[deliveries]]
+location = [-27.5954, -48.548]
+# Florianópolis, SC
+priority = "critical"
+demand = 6.6
+
+[[deliveries]]
+location = [-23.5505, -46.6333]
+# São Paulo, SP
+priority = "critical"
+demand = 7.0
+
+[[deliveries]]
+location = [-10.9472, -37.0731]
+# Aracaju, SE
+priority = "regular"
+demand = 17.7
+
+[[deliveries]]
+location = [-10.2491, -48.3243]
+# Palmas, TO
+priority = "critical"
+demand = 12.4

@@ -1,0 +1,18 @@
+# Plan
+pydantic==2.10.6
+numpy==2.0.2
+tomli-w==1.2.0
+pygame==2.6.0
+matplotlib==3.9.2
+
+# Analysis
+openai==2.29.0
+streamlit==1.55.0
+python-dotenv==1.1.0
+
+# QA
+ruff==0.9.4
+mypy==1.15.0
+
+# Testing
+coverage==7.13.5

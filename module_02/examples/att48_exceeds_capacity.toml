@@ -1,0 +1,293 @@
+# ATT48 — exceeds capacity variant.
+# Total demand ~716.9 units but fleet capacity is only 40 (2 x 20).
+# Expected: ValueError from validate_total_demand_feasible.
+
+[depot]
+location = [39.0473, -95.6752]
+
+[vehicles]
+count = 2
+capacity = 20.0
+max_range = 85.12
+
+[[deliveries]]
+location = [32.3617, -86.2792]
+# Montgomery, AL
+priority = "critical"
+demand = 17.8
+
+[[deliveries]]
+location = [33.4484, -112.074]
+# Phoenix, AZ
+priority = "critical"
+demand = 10.5
+
+[[deliveries]]
+location = [34.7465, -92.2896]
+# Little Rock, AR
+priority = "regular"
+demand = 19.7
+
+[[deliveries]]
+location = [38.5816, -121.4944]
+# Sacramento, CA
+priority = "critical"
+demand = 22.8
+
+[[deliveries]]
+location = [39.7392, -104.9903]
+# Denver, CO
+priority = "critical"
+demand = 13.4
+
+[[deliveries]]
+location = [41.7658, -72.6851]
+# Hartford, CT
+priority = "regular"
+demand = 9.4
+
+[[deliveries]]
+location = [39.1582, -75.5244]
+# Dover, DE
+priority = "critical"
+demand = 5.5
+
+[[deliveries]]
+location = [30.4518, -84.2807]
+# Tallahassee, FL
+priority = "regular"
+demand = 18.0
+
+[[deliveries]]
+location = [33.749, -84.388]
+# Atlanta, GA
+priority = "regular"
+demand = 9.4
+
+[[deliveries]]
+location = [43.615, -116.2023]
+# Boise, ID
+priority = "critical"
+demand = 21.2
+
+[[deliveries]]
+location = [39.7983, -89.6544]
+# Springfield, IL
+priority = "regular"
+demand = 21.1
+
+[[deliveries]]
+location = [39.7684, -86.1581]
+# Indianapolis, IN
+priority = "critical"
+demand = 11.8
+
+[[deliveries]]
+location = [41.5868, -93.625]
+# Des Moines, IA
+priority = "regular"
+demand = 24.1
+
+[[deliveries]]
+location = [38.2009, -84.8733]
+# Frankfort, KY
+priority = "critical"
+demand = 6.9
+
+[[deliveries]]
+location = [30.4515, -91.1871]
+# Baton Rouge, LA
+priority = "regular"
+demand = 21.9
+
+[[deliveries]]
+location = [44.3106, -69.7795]
+# Augusta, ME
+priority = "regular"
+demand = 21.1
+
+[[deliveries]]
+location = [38.9784, -76.4922]
+# Annapolis, MD
+priority = "regular"
+demand = 15.7
+
+[[deliveries]]
+location = [42.3601, -71.0589]
+# Boston, MA
+priority = "regular"
+demand = 12.6
+
+[[deliveries]]
+location = [42.7325, -84.5555]
+# Lansing, MI
+priority = "regular"
+demand = 21.6
+
+[[deliveries]]
+location = [44.9537, -93.09]
+# Saint Paul, MN
+priority = "regular"
+demand = 22.2
+
+[[deliveries]]
+location = [32.2988, -90.1848]
+# Jackson, MS
+priority = "critical"
+demand = 19.1
+
+[[deliveries]]
+location = [38.5767, -92.1735]
+# Jefferson City, MO
+priority = "critical"
+demand = 9.6
+
+[[deliveries]]
+location = [46.5958, -112.027]
+# Helena, MT
+priority = "critical"
+demand = 6.6
+
+[[deliveries]]
+location = [40.8136, -96.7026]
+# Lincoln, NE
+priority = "critical"
+demand = 7.0
+
+[[deliveries]]
+location = [39.1638, -119.7674]
+# Carson City, NV
+priority = "regular"
+demand = 17.7
+
+[[deliveries]]
+location = [43.2081, -71.5376]
+# Concord, NH
+priority = "critical"
+demand = 12.4
+
+[[deliveries]]
+location = [40.2171, -74.7429]
+# Trenton, NJ
+priority = "regular"
+demand = 10.3
+
+[[deliveries]]
+location = [35.687, -105.9378]
+# Santa Fe, NM
+priority = "regular"
+demand = 18.0
+
+[[deliveries]]
+location = [42.6526, -73.7562]
+# Albany, NY
+priority = "regular"
+demand = 8.4
+
+[[deliveries]]
+location = [35.7796, -78.6382]
+# Raleigh, NC
+priority = "regular"
+demand = 8.3
+
+[[deliveries]]
+location = [46.8083, -100.7837]
+# Bismarck, ND
+priority = "regular"
+demand = 24.8
+
+[[deliveries]]
+location = [39.9612, -82.9988]
+# Columbus, OH
+priority = "regular"
+demand = 16.1
+
+[[deliveries]]
+location = [35.4676, -97.5164]
+# Oklahoma City, OK
+priority = "regular"
+demand = 21.9
+
+[[deliveries]]
+location = [44.9429, -123.0351]
+# Salem, OR
+priority = "critical"
+demand = 9.6
+
+[[deliveries]]
+location = [40.2732, -76.8867]
+# Harrisburg, PA
+priority = "critical"
+demand = 11.3
+
+[[deliveries]]
+location = [41.824, -71.4128]
+# Providence, RI
+priority = "regular"
+demand = 9.2
+
+[[deliveries]]
+location = [34.0007, -81.0348]
+# Columbia, SC
+priority = "regular"
+demand = 22.5
+
+[[deliveries]]
+location = [44.3683, -100.351]
+# Pierre, SD
+priority = "regular"
+demand = 18.1
+
+[[deliveries]]
+location = [36.1627, -86.7816]
+# Nashville, TN
+priority = "regular"
+demand = 23.3
+
+[[deliveries]]
+location = [30.2672, -97.7431]
+# Austin, TX
+priority = "critical"
+demand = 10.3
+
+[[deliveries]]
+location = [40.7608, -111.891]
+# Salt Lake City, UT
+priority = "critical"
+demand = 16.2
+
+[[deliveries]]
+location = [44.2601, -72.5754]
+# Montpelier, VT
+priority = "regular"
+demand = 16.7
+
+[[deliveries]]
+location = [37.5407, -77.436]
+# Richmond, VA
+priority = "critical"
+demand = 13.0
+
+[[deliveries]]
+location = [47.0379, -122.9007]
+# Olympia, WA
+priority = "regular"
+demand = 25.0
+
+[[deliveries]]
+location = [38.3498, -81.6326]
+# Charleston, WV
+priority = "critical"
+demand = 6.8
+
+[[deliveries]]
+location = [43.0731, -89.4012]
+# Madison, WI
+priority = "regular"
+demand = 7.2
+
+[[deliveries]]
+location = [41.14, -104.8202]
+# Cheyenne, WY
+priority = "regular"
+demand = 20.8

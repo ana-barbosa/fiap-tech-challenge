@@ -1,0 +1,291 @@
+best_fitness = 366.25889568477004
+stopping_reason = "Reached fixed generation limit of 100"
+total_vehicles_available = 6
+total_vehicles_used = 6
+total_demand_served = 399.1
+
+[depot]
+location = [
+    -15.7801,
+    -47.9292,
+]
+
+[vehicles]
+capacity = 100.0
+max_range = 67.65
+
+[[routes]]
+vehicle_index = 0
+total_demand = 77.9
+total_distance_km = 3459.0
+critical_stops = 3
+regular_stops = 3
+
+[[routes.nodes]]
+location = [
+    -16.6864,
+    -49.2643,
+]
+priority = "regular"
+demand = 18.0
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -23.5505,
+    -46.6333,
+]
+priority = "critical"
+demand = 7.0
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    -27.5954,
+    -48.548,
+]
+priority = "critical"
+demand = 6.6
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    -25.4284,
+    -49.2733,
+]
+priority = "regular"
+demand = 21.9
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    -22.9068,
+    -43.1729,
+]
+priority = "regular"
+demand = 12.6
+stop_number = 5
+
+[[routes.nodes]]
+location = [
+    -19.9167,
+    -43.9345,
+]
+priority = "critical"
+demand = 11.8
+stop_number = 6
+
+[[routes]]
+vehicle_index = 1
+total_demand = 92.6
+total_distance_km = 6518.02
+critical_stops = 2
+regular_stops = 3
+
+[[routes.nodes]]
+location = [
+    -30.0346,
+    -51.2177,
+]
+priority = "regular"
+demand = 22.2
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -20.4697,
+    -54.6201,
+]
+priority = "regular"
+demand = 21.1
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    -15.601,
+    -56.0974,
+]
+priority = "critical"
+demand = 21.2
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    -10.2491,
+    -48.3243,
+]
+priority = "critical"
+demand = 12.4
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    -5.0892,
+    -42.8019,
+]
+priority = "regular"
+demand = 15.7
+stop_number = 5
+
+[[routes]]
+vehicle_index = 2
+total_demand = 62.8
+total_distance_km = 5949.08
+critical_stops = 1
+regular_stops = 3
+
+[[routes.nodes]]
+location = [
+    -2.5297,
+    -44.3028,
+]
+priority = "regular"
+demand = 9.4
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -1.4558,
+    -48.5044,
+]
+priority = "regular"
+demand = 24.1
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    0.034,
+    -51.0694,
+]
+priority = "regular"
+demand = 19.7
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    2.8235,
+    -60.6758,
+]
+priority = "critical"
+demand = 9.6
+stop_number = 4
+
+[[routes]]
+vehicle_index = 3
+total_demand = 25.4
+total_distance_km = 4697.39
+critical_stops = 2
+regular_stops = 1
+
+[[routes.nodes]]
+location = [
+    -3.7172,
+    -38.5433,
+]
+priority = "regular"
+demand = 9.4
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -9.666,
+    -35.735,
+]
+priority = "critical"
+demand = 10.5
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    -20.3155,
+    -40.3128,
+]
+priority = "critical"
+demand = 5.5
+stop_number = 3
+
+[[routes]]
+vehicle_index = 4
+total_demand = 59.7
+total_distance_km = 5459.88
+critical_stops = 3
+regular_stops = 0
+
+[[routes.nodes]]
+location = [
+    -3.119,
+    -60.0217,
+]
+priority = "critical"
+demand = 22.8
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -8.7612,
+    -63.9004,
+]
+priority = "critical"
+demand = 19.1
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    -9.9754,
+    -67.8249,
+]
+priority = "critical"
+demand = 17.8
+stop_number = 3
+
+[[routes]]
+vehicle_index = 5
+total_demand = 80.7
+total_distance_km = 3821.05
+critical_stops = 2
+regular_stops = 3
+
+[[routes.nodes]]
+location = [
+    -12.9714,
+    -38.5014,
+]
+priority = "critical"
+demand = 13.4
+stop_number = 1
+
+[[routes.nodes]]
+location = [
+    -10.9472,
+    -37.0731,
+]
+priority = "regular"
+demand = 17.7
+stop_number = 2
+
+[[routes.nodes]]
+location = [
+    -8.0578,
+    -34.8829,
+]
+priority = "regular"
+demand = 21.1
+stop_number = 3
+
+[[routes.nodes]]
+location = [
+    -7.1195,
+    -34.845,
+]
+priority = "critical"
+demand = 6.9
+stop_number = 4
+
+[[routes.nodes]]
+location = [
+    -5.7945,
+    -35.211,
+]
+priority = "regular"
+demand = 21.6
+stop_number = 5
