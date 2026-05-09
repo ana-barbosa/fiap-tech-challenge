@@ -4,3 +4,5 @@
 .venv
 */.ipynb_checkpoints/
 __pycache__/
+module_03/data/raw/
+module_03/data/processed/
