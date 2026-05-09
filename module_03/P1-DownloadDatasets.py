@@ -23,7 +23,7 @@ import tempfile
 
 # Get the data/raw directory
 SCRIPT_DIR = Path(__file__).parent
-RAW_DIR = SCRIPT_DIR / "raw"
+RAW_DIR = SCRIPT_DIR / "data" / "raw"
 
 
 def create_directories():
@@ -54,27 +54,26 @@ def run_command(cmd, cwd=None, desc=""):
 
 
 def download_pubmedqa():
-    """Download PubMedQA dataset."""
-    pubmedqa_dir = RAW_DIR / "pubmedqa"
+    """Download PubMedQA dataset - ori_pqal.json only."""
+    pubmedqa_dir = RAW_DIR / "pubmedqa" / "data"
 
-    if (pubmedqa_dir / "data" / "ori_pqal.json").exists():
+    if (pubmedqa_dir / "ori_pqal.json").exists():
         print("✅ PubMedQA already downloaded")
         return True
 
-    # Remove if partial download exists
-    if pubmedqa_dir.exists():
-        shutil.rmtree(pubmedqa_dir)
+    pubmedqa_dir.mkdir(parents=True, exist_ok=True)
 
-    success = run_command(
-        ["git", "clone", "https://github.com/pubmedqa/pubmedqa.git", str(pubmedqa_dir)],
-        desc="Downloading PubMedQA"
-    )
+    url = "https://raw.githubusercontent.com/pubmedqa/pubmedqa/master/data/ori_pqal.json"
 
-    if success and (pubmedqa_dir / "data" / "ori_pqal.json").exists():
+    try:
+        print("📥 Downloading PubMedQA...")
+        with urlopen(url, timeout=300) as response:
+            with open(pubmedqa_dir / "ori_pqal.json", "wb") as f:
+                f.write(response.read())
         print("✅ PubMedQA downloaded successfully")
         return True
-    else:
-        print("❌ PubMedQA download failed")
+    except Exception as e:
+        print(f"❌ PubMedQA download failed: {e}")
         return False
 
 
