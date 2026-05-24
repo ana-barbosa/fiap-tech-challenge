@@ -1,0 +1,23 @@
+[
+  {
+    "patient_id": 1,
+    "patient_name": "João Silva",
+    "doctor": "Dr. Ana Costa",
+    "pending_exams": "HbA1c, Renal Function Panel",
+    "recommendation": "Given the patient's diagnosis of hypertension and type 2 diabetes, it is crucial to maintain a comprehensive approach while awaiting further test results such as HbA1c and Renal Function Panel outcomes. Here are evidence-based clinical guidelines for managing these conditions:\n\n**Hypertension Management in Patients with Type 2 Diabetes (T2D):**\nAccording to the American College of Cardiology/American Heart Association Guideline on cardiovascular health and risk reduction, patients like João Silva should be managed according to their individualized blood pressure goals. The target for most adul"
+  },
+  {
+    "patient_id": 3,
+    "patient_name": "Carlos Oliveira",
+    "doctor": "Dr. Ana Costa",
+    "pending_exams": "Echocardiogram",
+    "recommendation": "Given the patient Carlos Oliveira's diagnosis of Chronic Heart Failure (CHF) and Atrial Fibrillation (AF), along with his current medications—furosemide for fluid management, warfarin as an anticoagulant due to AF-related stroke risk, and bisoprolol for rate control in AF—and considering the elevated BNP level of 450 pg/mL indicating worsening heart failure symptoms:\n\n1. **Monitoring**: Continue close monitoring of Carlos's vital signs (blood pressure, heart rate), fluid status, and renal function to assess his response to current diuretic therapy with furosemide and the effectiveness in manag"
+  },
+  {
+    "patient_id": 5,
+    "patient_name": "Roberto Ferreira",
+    "doctor": "Dr. Pedro Lima",
+    "pending_exams": "Microalbumin/Creatinine Ratio",
+    "recommendation": "Given the patient Roberto Ferreira's diagnosis of Type 2 Diabetes and Dyslipidemia, along with his current medication regimen (Metformin 1000mg for diabetes management and Atorvastatin 20mg for dyslipidemia), it is important to approach any changes in therapy cautiously until we have the results of pending exams, such as the Microalbumin/Creatinine Ratio. Here are some evidence-based clinical actions that can be prioritized while awaiting these results:\n\n1. Monitor blood glucose levels more frequently to ensure tight glycemic control and adjust Metformin dosage if necessary, based on the patie"
+  }
+]

@@ -6,3 +6,4 @@
 __pycache__/
 module_03/data/raw/
 module_03/data/processed/
+module_03/data/patients.db
