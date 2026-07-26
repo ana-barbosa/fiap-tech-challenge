@@ -25,7 +25,7 @@ the combined result, the UI only ever reads the database.
 ```
 [video service  ] ─┐
 [audio service  ] ─┼──▶ [SQLite db/hospital.sqlite] ──▶ [aggregation service] ──▶ [Streamlit app]
-[anomaly service] ─┘
+[tabular service] ─┘
 ```
 
 See `docs/architecture.md` for the full diagram and rationale.
