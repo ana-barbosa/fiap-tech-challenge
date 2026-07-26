@@ -1,0 +1,4 @@
+# Aggregation service - lightweight by design (see docs/osteoporosis_scenario_plan.md's
+# Repository Structure section: "DB access + rules only, no ML deps"). Uses only
+# sqlite3/json from the standard library - the only dependency here is the test runner.
+pytest==9.1.1

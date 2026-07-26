@@ -1,0 +1,31 @@
+# Audio service - isolated venv (make setup-audio), separate from services/video/'s
+# venv so whisperx's own pinned deps don't have to coexist with mediapipe/ultralytics.
+# generate_tts.py moved to dataset/ (own venv, make setup-dataset) - input generation,
+# not something services/audio/run.py's transcribe+score pipeline itself needs.
+
+# also requires the ffmpeg binary on PATH (not a pip package - e.g. apt-get install
+# ffmpeg) - whisperx's load_audio shells out to it to decode audio.
+
+# transcription.py - diarization needs a HuggingFace token, see that module's docstring.
+# Pinned to the latest release as of this writing - the isolated venv means whisperx's
+# own numpy>=2 requirement no longer conflicts with anything (that conflict only existed
+# back when video's mediapipe<2 pin shared this same environment). See transcription.py's
+# module docstring for what changed vs. the old 3.1.1 pin (VAD no longer needs a token or
+# a manual patch - whisperx now ships its VAD checkpoint as a local package asset;
+# DiarizationPipeline's token kwarg is named `token`, not `use_auth_token`).
+whisperx==3.8.6
+python-dotenv==1.2.2
+# torch/torchaudio/torchvision left at whatever whisperx==3.8.6/pyannote-audio's own
+# pins resolve to - pinned here only for reproducibility, not to work around a specific
+# incompatibility (unlike the old Dec-2023-era pins this replaced).
+torch==2.8.0
+torchaudio==2.8.0
+torchvision==0.23.0
+# faster-whisper/av: whisperx==3.8.6 already passes a complete set of fields to
+# TranscriptionOptions itself, so no extra options dict is needed on our side (unlike
+# the old whisperx==3.1.1 pin, which required transcription.py's now-removed
+# EXTRA_ASR_OPTIONS workaround). Pinned for reproducibility only.
+faster-whisper==1.2.1
+av==18.0.0
+
+pytest==9.1.1

@@ -1,0 +1,5 @@
+# Streamlit dashboard - dependency-light by design (see
+# docs/osteoporosis_scenario_plan.md's Streamlit UI section: "DB client only, no ML
+# libraries"). Reads db/hospital.sqlite via sqlite3 (stdlib) + pandas only.
+streamlit==1.51.0
+pandas==2.3.3

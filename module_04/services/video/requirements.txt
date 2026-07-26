@@ -1,0 +1,12 @@
+# Video service - isolated venv (make setup-video). dataset/download_video_dataset.py
+# has its own separate venv (make setup-dataset) - not this one, so this stays scoped to
+# what video's own pose/gait processing needs.
+opencv-python-headless==4.11.0.86
+mediapipe==0.10.21
+ultralytics==8.4.89
+numpy==1.26.4
+pandas==3.0.3
+openpyxl==3.1.5
+scipy==1.17.1
+
+pytest==9.1.1

@@ -1,0 +1,14 @@
+# Tabular service - isolated venv (make setup-tabular).
+# scikit-learn pinned to match module_01/analysis/bone-density-analysis.ipynb's own pin
+# exactly (cell 2: numpy==2.3.5 pandas==2.3.3 scikit-learn==1.8.0) - the pickled
+# model/pipeline in models/ were fit under this exact version; unpickling with a
+# meaningfully different scikit-learn version risks silent incompatibility, not just a
+# warning.
+numpy==2.3.5
+pandas==2.3.3
+scikit-learn==1.8.0
+# openpyxl (.xlsx engine for dataset/raw/patients.xlsx) moved to dataset/requirements.txt
+# with generate_clinical_records.py - this service only reads back the already-generated
+# CSV (pandas.read_csv), never the source .xlsx directly.
+
+pytest==9.1.1

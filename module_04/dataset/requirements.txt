@@ -1,0 +1,27 @@
+# dataset/ - own isolated venv (make setup-dataset), independent of every service's
+# venv. Input-acquisition/generation scripts, not modality processing - they
+# shouldn't couple to (or borrow dependencies from) any one service's stack.
+requests==2.34.2
+tqdm==4.68.3
+huggingface_hub==0.36.2
+
+# generate_tts.py - also requires the ffmpeg binary on PATH (not a pip package,
+# e.g. apt-get install ffmpeg), used by pydub to assemble turns into one file.
+edge-tts==7.2.8
+pydub==0.25.1
+
+# generate_clinical_records.py - numpy/pandas for sampling + CSV output, openpyxl as
+# the .xlsx engine for dataset/raw/patients.xlsx. Pinned to match what
+# services/tabular/requirements.txt used before this script moved here (numpy/pandas
+# versions don't need to match services/tabular's scikit-learn-unpickling-safety pin -
+# this script never touches the pickled model - kept aligned anyway since it's the same
+# generation code, already known to work against these exact versions).
+numpy==2.3.5
+pandas==2.3.3
+openpyxl==3.1.5
+
+# init_db.py, seed_patients.py's own DB writes - sqlite3/argparse/pathlib are stdlib,
+# nothing to pin here; listed so it's clear these run under this pinned venv/Python
+# version too, not the bare system python3.
+
+pytest==9.1.1
