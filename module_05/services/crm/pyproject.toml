@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=term-missing"
+
+[tool.coverage.run]
+branch = true
+omit = ["tests/*"]
