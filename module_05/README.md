@@ -18,7 +18,11 @@ full feature list. See [`docs/demos.md`](docs/demos.md) for recorded demo videos
 make setup
 ```
 
-Fill in `OPENAI_API_KEY` and `TELEGRAM_BOT_TOKEN` in the root `.env` before running.
+‼️ Fill in `OPENAI_API_KEY` and `TELEGRAM_BOT_TOKEN` in the root `.env` before continuing.
+
+```bash
+make seed
+```
 
 ## Run
 
@@ -42,6 +46,8 @@ make down
 ```
 
 ## Tests
+
+‼️ Requires the [setup](#setup) step to be finished first.
 
 ```bash
 make qa

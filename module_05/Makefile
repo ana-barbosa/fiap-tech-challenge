@@ -22,7 +22,7 @@ setup:
 
 	docker compose build
 
-	# Seed data creation
+seed:
 	docker compose run --rm crm python seed_data/seed_crm.py
 	docker compose run --rm agent_backend python seed_data/seed_conversations.py
 
