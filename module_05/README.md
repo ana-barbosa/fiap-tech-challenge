@@ -2,8 +2,8 @@
 
 Multi-agent real estate SDR: a Telegram bot and a website chat widget both talk to a
 LangGraph-based backend (real estate / mortgage advisor / follow-up agents) that's grounded
-via RAG over a dummy CRM. See [`docs/arch.md`](docs/arch.md) for architecture, diagrams, and
-full feature list. See [`docs/demos.md`](docs/demos.md) for recorded demo videos.
+via RAG over a dummy CRM. See [`docs/architecture.md`](docs/architecture.md) for architecture, 
+diagrams, and full feature list. See [`docs/demos.md`](docs/demos.md) for recorded demo videos.
 
 ## Requirements
 

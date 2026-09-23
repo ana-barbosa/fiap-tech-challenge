@@ -273,6 +273,31 @@ Key mechanics:
   results were used (ids only), redacted prompt/response, error, injection flag. Aggregated by
   `GET /stats/observability` and shown on the dashboards' admin page.
 
+## LLM provider and model choice
+
+`agent_backend` uses OpenAI's `gpt-4o-mini` (`OPENAI_MODEL`), via LangChain's `ChatOpenAI` with
+`temperature=0` - structured field extraction (`Qualification`) should be deterministic, not
+creative.
+
+**Started local, for simplicity and cost.** The first approach was to run entirely against local
+Ollama models, avoiding any API cost or key management during development. Three models were
+tested on real hardware - `qwen2.5:3b`, `qwen2.5:7b`, `llama3.1:8b` - on the same combined
+reply + structured-extraction task `AgentTurn` still does today. All three failed at the
+structured-extraction half of that task: `intent` was never once captured correctly, even when
+stated explicitly ("quero **alugar**"), and the larger 7b/8b models made it worse, not better -
+they hallucinated fields outright (fabricated lease durations, investment fields populated in a
+plain rent conversation) instead of the smaller model's safer failure mode of leaving fields
+`null`. Neither `temperature=0` nor Portuguese-language field aliasing fixed it, ruling out
+sampling noise and a prompt/schema language mismatch as the cause.
+
+**Moved to `gpt-4o-mini`, which just worked.** The same test conversation - the one no local
+model passed - ran cleanly on the first try: `intent`, `region`, and `rooms` captured correctly
+on turn 1, and an approximate price ("por volta de R$2000") correctly expanded into a
+`price_min`/`price_max` band on turn 2, with no hallucinated fields and no prompt or schema
+changes. OpenAI doesn't publish a parameter count for `gpt-4o-mini`, so it's unclear whether it
+simply outscales the 3B-8B local models tested, or whether it's the difference in model family
+and training that matters more than raw size - either could explain the gap on its own.
+
 ## Background loops (`agent_backend`)
 
 All three run as daemon threads started in `main.py`'s FastAPI `lifespan`, independent of the
