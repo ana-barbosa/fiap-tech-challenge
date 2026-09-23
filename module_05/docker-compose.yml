@@ -1,0 +1,98 @@
+services:
+  crm:
+    build: ./services/crm
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./services/crm/db:/app/db
+      - ./services/crm/static/photos:/app/static/photos
+    env_file:
+      - services/crm/.env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  website:
+    build: ./services/website
+    ports:
+      - "8501:8501"
+    depends_on:
+      crm:
+        condition: service_healthy
+      agent_backend:
+        condition: service_healthy
+    environment:
+      - CRM_INTERNAL_URL=http://crm:8000
+      - CRM_PUBLIC_URL=http://localhost:8000
+      - AGENT_BACKEND_INTERNAL_URL=http://agent_backend:8001
+
+  etl:
+    build: ./services/etl
+    ports:
+      - "8080:8080"
+    depends_on:
+      crm:
+        condition: service_healthy
+    volumes:
+      - ./data/chroma:/data/chroma
+      - etl_model_cache:/root/.cache/chroma
+    env_file:
+      - services/etl/.env
+
+  agent_backend:
+    build: ./services/agent_backend
+    ports:
+      - "8001:8001"
+    depends_on:
+      crm:
+        condition: service_healthy
+    volumes:
+      - ./data/chroma:/data/chroma:ro
+      - ./services/agent_backend/db:/app/db
+      - agent_backend_model_cache:/root/.cache/chroma
+    env_file:
+      - .env
+      - services/agent_backend/.env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  telegram_bot:
+    build: ./services/telegram_bot
+    ports:
+      - "8090:8090"
+    depends_on:
+      agent_backend:
+        condition: service_healthy
+    volumes:
+      - ./services/telegram_bot/data:/app/data
+    env_file:
+      - .env
+      - services/telegram_bot/.env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8090/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  dashboards:
+    build: ./services/dashboards
+    ports:
+      - "8502:8502"
+    depends_on:
+      crm:
+        condition: service_healthy
+      agent_backend:
+        condition: service_healthy
+    environment:
+      - CRM_INTERNAL_URL=http://crm:8000
+      - CRM_PUBLIC_URL=http://localhost:8000
+      - AGENT_BACKEND_INTERNAL_URL=http://agent_backend:8001
+
+volumes:
+  etl_model_cache:
+  agent_backend_model_cache:
