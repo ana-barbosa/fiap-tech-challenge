@@ -4,7 +4,7 @@ import threading
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import RedirectResponse
 from langchain_core.messages import AIMessage, HumanMessage, ToolMessage
 from langgraph.errors import GraphRecursionError
@@ -19,6 +19,7 @@ from . import (
     price_drop,
     rate_limit,
     redact,
+    speech,
     stats,
     summary,
     tracing,
@@ -178,6 +179,10 @@ class SummaryResponse(BaseModel):
     summary: str
 
 
+class TranscribeResponse(BaseModel):
+    text: str
+
+
 class LeadStatsResponse(BaseModel):
     total_clients: int
     intent_breakdown: dict[str, int]
@@ -319,3 +324,16 @@ def chat(data: ChatRequest) -> ChatResponse:
     logger.info("Chat reply produced")
 
     return ChatResponse(reply=reply, qualification=qualification_dict, specialist=specialist)
+
+
+@app.post("/transcribe", response_model=TranscribeResponse)
+async def transcribe(audio: UploadFile = File(...)) -> TranscribeResponse:
+    # A standalone, conversation-agnostic utility - callers decide whether/when to use it and
+    # what to do with the result (e.g. whether an empty transcription is worth forwarding to
+    # /chat at all). agent_backend has no concept of "voice" as a channel-level feature.
+    try:
+        text = speech.transcribe(audio.filename, await audio.read())
+    except speech.SpeechError as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+    return TranscribeResponse(text=text)

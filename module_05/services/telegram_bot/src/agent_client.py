@@ -20,3 +20,16 @@ def send_message(conversation_id: str, message: str) -> dict:
         return response.json()
     except requests.RequestException as exc:
         raise AgentUnavailableError(str(exc)) from exc
+
+
+def transcribe(audio_bytes: bytes) -> str:
+    try:
+        response = requests.post(
+            f"{config.AGENT_BACKEND_INTERNAL_URL}/transcribe",
+            files={"audio": ("voice.ogg", audio_bytes, "audio/ogg")},
+            timeout=TIMEOUT_SECONDS,
+        )
+        response.raise_for_status()
+        return response.json()["text"]
+    except requests.RequestException as exc:
+        raise AgentUnavailableError(str(exc)) from exc

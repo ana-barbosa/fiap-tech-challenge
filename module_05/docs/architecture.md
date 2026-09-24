@@ -119,7 +119,7 @@ flowchart LR
     Browser --> website["website\n(Streamlit)"]
     Browser --> dashboards["dashboards\n(Streamlit)"]
 
-    telegram_bot -->|"POST /chat"| agent_backend
+    telegram_bot -->|"POST /chat\nPOST /transcribe (voice)"| agent_backend
     website -->|"POST /chat"| agent_backend["agent_backend\n(FastAPI + LangGraph)"]
     dashboards -->|"stats, summaries"| agent_backend
     dashboards -->|"listings, visits"| crm
@@ -137,8 +137,9 @@ flowchart LR
 ```
 
 Every service is a separate Docker container (`docker-compose.yml`), each owning its own
-SQLite database where relevant. `agent_backend` is the only service with a real LLM dependency
-(OpenAI); `crm` is a plain CRUD API standing in for a real estate agency's CRM/ERP.
+SQLite database where relevant. `agent_backend` is the only service with a real LLM/AI dependency
+(OpenAI, including Whisper for voice transcription); `crm` is a plain CRUD API standing in for a
+real estate agency's CRM/ERP.
 
 ## Services
 
@@ -146,8 +147,8 @@ SQLite database where relevant. `agent_backend` is the only service with a real 
 |---|---|---|---|
 | `crm` | FastAPI + SQLite | 8000 | Source of truth for property listings and visit bookings. |
 | `etl` | FastAPI + background thread | 8080 | Polls `crm`, keeps 4 Chroma collections in sync (listings, geo, ROI, financing docs). |
-| `agent_backend` | FastAPI + LangGraph + SQLite | 8001 | Multi-agent chat API, conversation persistence, RAG tools, visit booking, follow-up/price-drop/summary background loops, observability tracing. |
-| `telegram_bot` | FastAPI + long polling | 8090 | Bridges Telegram ⇄ `agent_backend`; exposes `/push` so `agent_backend` can send unprompted messages. |
+| `agent_backend` | FastAPI + LangGraph + SQLite | 8001 | Multi-agent chat API, speech-to-text transcription, conversation persistence, RAG tools, visit booking, follow-up/price-drop/summary background loops, observability tracing. |
+| `telegram_bot` | FastAPI + long polling | 8090 | Bridges Telegram ⇄ `agent_backend`, including voice messages; exposes `/push` so `agent_backend` can send unprompted messages. |
 | `website` | Streamlit | 8501 | Public property search + chat widget. |
 | `dashboards` | Streamlit | 8502 | Broker visit agenda, company-wide lead/property stats, admin observability page. |
 
@@ -298,6 +299,10 @@ changes. OpenAI doesn't publish a parameter count for `gpt-4o-mini`, so it's unc
 simply outscales the 3B-8B local models tested, or whether it's the difference in model family
 and training that matters more than raw size - either could explain the gap on its own.
 
+Voice transcription (Telegram voice messages, see Telegram bot) uses OpenAI's `whisper-1` for the
+same reason - the project is already OpenAI-only, so there was no separate provider evaluation
+for this; see `agent_backend/src/speech.py`.
+
 ## Background loops (`agent_backend`)
 
 All three run as daemon threads started in `main.py`'s FastAPI `lifespan`, independent of the
@@ -353,6 +358,16 @@ message is forwarded verbatim to `agent_backend`'s `/chat` with `channel="telegr
 gets a canned greeting without hitting the agent. A `/push` endpoint lets `agent_backend`'s
 follow-up and price-drop loops send unprompted messages to a `chat_id`.
 
+**Voice messages** are downloaded from Telegram and posted to `agent_backend`'s
+`POST /transcribe`; the returned text is then treated exactly like a typed message. An empty or
+failed transcription gets a canned "não consegui entender o áudio" reply instead of ever
+reaching `/chat`. Replies stay text-only for now (see "Voice input" under Functionality).
+
+All speech intelligence (the Whisper call, `language="pt"` pinning) lives in `agent_backend`'s
+`speech.py`, not here - `telegram_bot` only does Telegram-protocol mechanics. This keeps the
+channel-adapter boundary from the Bridging Narrative intact: a WhatsApp adapter would need its
+own download/send plumbing, but would call the same `agent_backend` endpoints.
+
 Known limitation: Telegram strips hyperlinks that aren't publicly hosted, so listing-detail
 links (which point at `localhost:8501`) don't render as clickable links in that channel.
 
@@ -397,6 +412,8 @@ if either is unavailable rather than crashing the page.
   persisted as a real CRM booking.
 - Same backend serves both the Telegram bot and the website chat widget identically; a
   conversation is portable across restarts (state lives in SQLite, not memory).
+- Voice messages on Telegram are transcribed (OpenAI Whisper, Portuguese-pinned) and handled
+  identically to a typed message from that point on - no voice reply yet, text-only for now.
 
 ### Automated outreach
 
@@ -421,6 +438,12 @@ if either is unavailable rather than crashing the page.
 
 ### Out of scope (by design)
 
-- Voice AI, cloud deployment, dashboard access control, funnel/drop-off analytics, and
-  long-term conversational-memory summarization (beyond the sliding history window) were all
-  deliberately excluded to fit the project's scope and deadline - not unfinished work.
+- Voice *output* - a synthesized spoken reply. Telegram voice messages are transcribed to text
+  (see Telegram bot / Core conversational flow above), but replies stay text-only; a full
+  voice-in/voice-out round trip was scoped as a stretch goal (accessibility-motivated, not just
+  convenience) and hasn't been picked up.
+- Voice on the website - text-only chat widget, by decision, to keep the site behaving like an
+  ordinary chatbot embed rather than adding a second voice surface.
+- Cloud deployment, dashboard access control, funnel/drop-off analytics, and long-term
+  conversational-memory summarization (beyond the sliding history window) were all deliberately
+  excluded to fit the project's scope and deadline - not unfinished work.

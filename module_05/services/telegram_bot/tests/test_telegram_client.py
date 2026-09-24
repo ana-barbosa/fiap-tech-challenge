@@ -3,7 +3,7 @@ from unittest.mock import Mock, patch
 import pytest
 import requests
 
-from src.telegram_client import TelegramUnavailableError, get_updates, send_message
+from src.telegram_client import TelegramUnavailableError, get_file_bytes, get_updates, send_message
 
 
 def test_get_updates_without_offset_omits_it_from_params():
@@ -50,3 +50,29 @@ def test_send_message_raises_telegram_unavailable_on_request_exception():
     with patch("src.telegram_client.requests.post", side_effect=requests.ConnectionError("boom")):
         with pytest.raises(TelegramUnavailableError):
             send_message(123, "olá")
+
+
+def test_get_file_bytes_downloads_file_content():
+    file_info_response = Mock(status_code=200)
+    file_info_response.json.return_value = {"result": {"file_path": "voice/file_1.oga"}}
+    file_info_response.raise_for_status = Mock()
+
+    file_content_response = Mock(status_code=200, content=b"fake-ogg-bytes")
+    file_content_response.raise_for_status = Mock()
+
+    with patch(
+        "src.telegram_client.requests.get", side_effect=[file_info_response, file_content_response]
+    ) as mocked_get:
+        result = get_file_bytes("file-id-123")
+
+    assert result == b"fake-ogg-bytes"
+    first_call, second_call = mocked_get.call_args_list
+    assert first_call.args[0] == "https://api.telegram.org/bottest-token/getFile"
+    assert first_call.kwargs["params"] == {"file_id": "file-id-123"}
+    assert second_call.args[0] == "https://api.telegram.org/file/bottest-token/voice/file_1.oga"
+
+
+def test_get_file_bytes_raises_telegram_unavailable_on_request_exception():
+    with patch("src.telegram_client.requests.get", side_effect=requests.ConnectionError("boom")):
+        with pytest.raises(TelegramUnavailableError):
+            get_file_bytes("file-id-123")
