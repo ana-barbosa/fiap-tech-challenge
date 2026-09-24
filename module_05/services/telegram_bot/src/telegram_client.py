@@ -31,6 +31,27 @@ def get_updates(offset: int | None, timeout: int) -> list[dict]:
     return response.json()["result"]
 
 
+def get_file_bytes(file_id: str) -> bytes:
+    try:
+        response = requests.get(
+            f"https://api.telegram.org/bot{config.TELEGRAM_BOT_TOKEN}/getFile",
+            params={"file_id": file_id},
+            timeout=TIMEOUT_SECONDS_MARGIN,
+        )
+        response.raise_for_status()
+        file_path = response.json()["result"]["file_path"]
+
+        file_response = requests.get(
+            f"https://api.telegram.org/file/bot{config.TELEGRAM_BOT_TOKEN}/{file_path}",
+            timeout=TIMEOUT_SECONDS_MARGIN,
+        )
+        file_response.raise_for_status()
+    except requests.RequestException as exc:
+        raise TelegramUnavailableError(str(exc)) from exc
+
+    return file_response.content
+
+
 def send_message(chat_id: int, text: str) -> None:
     try:
         response = requests.post(

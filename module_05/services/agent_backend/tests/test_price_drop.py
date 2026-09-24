@@ -88,6 +88,23 @@ def test_run_once_notifies_and_stamps_last_notified_price(monkeypatch):
     assert stats["notified"] == 1
 
 
+def test_run_once_does_not_stamp_last_notified_price_when_push_fails(monkeypatch):
+    state = ConversationState(conversation_id="123", shown_listings={"34": {"city": "Taubaté", "price": 1000.0}})
+    monkeypatch.setattr(price_drop.conversation_store, "list_by_channel", MagicMock(return_value=[state]))
+    monkeypatch.setattr(price_drop.crm_client, "get_property", MagicMock(return_value={"price": 900.0}))
+    fake_push = MagicMock(return_value=False)
+    monkeypatch.setattr(price_drop.telegram_bot_client, "push_message", fake_push)
+    fake_save = MagicMock()
+    monkeypatch.setattr(price_drop.conversation_store, "save", fake_save)
+
+    stats = price_drop.run_once()
+
+    fake_push.assert_called_once()
+    assert "last_notified_price" not in state.shown_listings["34"]
+    fake_save.assert_called_once_with(state)
+    assert stats["notified"] == 0
+
+
 def test_run_once_skips_conversation_with_no_drop(monkeypatch):
     state = ConversationState(conversation_id="123", shown_listings={"34": {"city": "Taubaté", "price": 1000.0}})
     monkeypatch.setattr(price_drop.conversation_store, "list_by_channel", MagicMock(return_value=[state]))

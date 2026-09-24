@@ -53,7 +53,9 @@ def run_once() -> dict:
             continue
 
         snapshot = state.shown_listings[property_id]
-        telegram_bot_client.push_message(state.conversation_id, build_message(snapshot))
+        if not telegram_bot_client.push_message(state.conversation_id, build_message(snapshot)):
+            continue
+
         snapshot["followed_up_at"] = datetime.now(timezone.utc).isoformat()
         conversation_store.save(state)
         nudged += 1

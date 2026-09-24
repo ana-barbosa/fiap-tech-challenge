@@ -102,6 +102,26 @@ def test_run_once_nudges_eligible_conversation_and_stamps_followed_up_at(monkeyp
     assert stats["nudged"] == 1
 
 
+def test_run_once_does_not_stamp_followed_up_at_when_push_fails(monkeypatch):
+    state = ConversationState(
+        conversation_id="123",
+        shown_listings={"34": {"city": "Taubaté", "property_type": "apartment"}},
+    )
+    monkeypatch.setattr(followup, "find_eligible_conversations", MagicMock(return_value=[state]))
+    monkeypatch.setattr(followup.crm_client, "get_confirmed_visit_property_ids", MagicMock(return_value=set()))
+    fake_push = MagicMock(return_value=False)
+    monkeypatch.setattr(followup.telegram_bot_client, "push_message", fake_push)
+    fake_save = MagicMock()
+    monkeypatch.setattr(followup.conversation_store, "save", fake_save)
+
+    stats = followup.run_once()
+
+    fake_push.assert_called_once()
+    assert "followed_up_at" not in state.shown_listings["34"]
+    fake_save.assert_not_called()
+    assert stats["nudged"] == 0
+
+
 def test_run_once_skips_conversation_with_no_candidate(monkeypatch):
     state = ConversationState(conversation_id="123", shown_listings={})
     monkeypatch.setattr(followup, "find_eligible_conversations", MagicMock(return_value=[state]))

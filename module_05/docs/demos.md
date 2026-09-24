@@ -32,26 +32,32 @@ An investor is interacting with the Telegram bot, looking to buy an apartment wi
 
 [▶ Watch video](videos/case_04.mp4)
 
-## Case 5 - Hand-off + booking + agenda via Telegram
+## Case 5 - Voice input, booking + agenda via Telegram
+
+A customer interacts with the Telegram bot using voice messages instead of typing. The real estate agent transcribes the spoken requests and replies as normal, books a visit for the customer, and the broker's agenda is updated with the scheduled appointment.
+
+[▶ Watch video](videos/case_05.mov)
+
+## Case 6 - Hand-off + booking + agenda via Telegram
 
 A customer is interacting with the Telegram bot, looking to buy a house. The real estate agent can't find any property with the desired description and offers an apartment instead. The mortgage agent helps with financing advice, and the real estate agent books the visit for the customer. The broker's agenda is updated with the scheduled appointment.
 
-[▶ Watch video](videos/case_05.mp4)
+[▶ Watch video](videos/case_06.mp4)
 
-## Case 6 - Inactivity follow-up + price drop
+## Case 7 - Inactivity follow-up + price drop
 
 A customer is interacting with the Telegram bot, looking to buy an apartment. The real estate agent suggests an option to the customer but gets no response. After 2 minutes, the follow-up agent sends a message nudging for a response. Meanwhile, the property's price drops in the CRM (via `make drop-price PROPERTY_ID=25 PRICE=370000`), so the follow-up agent sends another notification displaying the new price.
 
-[▶ Watch video](videos/case_06.mp4)
+[▶ Watch video](videos/case_07.mp4)
 
-## Case 7 - Broker & admin dashboards
+## Case 8 - Broker & admin dashboards
 
 This video demonstrates the Real Estate Agency dashboard, which has the broker's visit agenda (with past and upcoming bookings) as well as general data about the company. It also tracks the most and least sought-after properties, and lead categorization. There's also an Admin panel to follow up on LLM interactions and expenditures.
 
-[▶ Watch video](videos/case_07.mov)
+[▶ Watch video](videos/case_08.mov)
 
-## Case 8 - Prompt injection
+## Case 9 - Prompt injection
 
 A customer is interacting with the Telegram bot, trying to get access to the LLM's system prompt. The agent has prompt safeguards and correctly blocks the attempt. The malicious attempt can be seen logged in the Admin panel.
 
-[▶ Watch video](videos/case_08.mov)
+[▶ Watch video](videos/case_09.mov)

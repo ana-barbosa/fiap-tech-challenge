@@ -46,7 +46,9 @@ def run_once() -> dict:
             continue
 
         for property_id, snapshot, new_price in drops:
-            telegram_bot_client.push_message(state.conversation_id, build_message(snapshot, new_price))
+            if not telegram_bot_client.push_message(state.conversation_id, build_message(snapshot, new_price)):
+                continue
+
             snapshot["last_notified_price"] = new_price
             notified += 1
             logger.info(

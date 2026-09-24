@@ -332,3 +332,23 @@ def test_chat_starts_fresh_when_stored_conversation_is_expired(monkeypatch):
     invoked_state = fake_graph.invoke.call_args.args[0]
     assert len(invoked_state["messages"]) == 1
     assert invoked_state["qualification"] == Qualification()
+
+
+def test_transcribe_returns_text_on_success(monkeypatch):
+    monkeypatch.setattr(main.speech, "transcribe", lambda filename, audio_bytes: "quero alugar um apê")
+
+    response = client.post("/transcribe", files={"audio": ("voice.ogg", b"fake-bytes", "audio/ogg")})
+
+    assert response.status_code == 200
+    assert response.json() == {"text": "quero alugar um apê"}
+
+
+def test_transcribe_returns_502_on_speech_error(monkeypatch):
+    def _raise(filename, audio_bytes):
+        raise main.speech.SpeechError("boom")
+
+    monkeypatch.setattr(main.speech, "transcribe", _raise)
+
+    response = client.post("/transcribe", files={"audio": ("voice.ogg", b"fake-bytes", "audio/ogg")})
+
+    assert response.status_code == 502
