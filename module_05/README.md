@@ -12,6 +12,29 @@ diagrams, and full feature list. See [`docs/demos.md`](docs/demos.md) for record
 - A Telegram bot token ([BotFather](https://core.telegram.org/bots#botfather)) — required even
   if you only plan to use the website chat, since `telegram_bot` is part of the stack
 
+## Architecture: microservices around a multi-agent hub
+
+Six services, each its own Docker container. Both client channels (website, Telegram) talk to
+`agent_backend`, which runs the multi-agent logic and is the only service grounded via RAG
+(Chroma, kept in sync from the CRM and external sources by `etl`).
+
+```mermaid
+flowchart LR
+    telegram_bot["Telegram Bot"] --> agent_backend["Multi-Agent Backend"]
+    website["Real Estate Website"] --> agent_backend
+
+    agent_backend --> crm["CRM"]
+    agent_backend --> chroma[("Vector Store")]
+
+    crm --> etl["Sync Pipeline"]
+    etl --> chroma
+    wikipedia[("Wikipedia")] --> etl
+    pdfs[("Financing/Regulatory\nPDFs")] --> etl
+```
+
+See [`docs/architecture.md`](docs/architecture.md) for the full diagram, data stores, and
+request-flow detail.
+
 ## Setup
 
 ```bash
